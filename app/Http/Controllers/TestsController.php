@@ -17,15 +17,17 @@ class TestsController extends Controller
                     }]);
             }])
             ->whereHas('categoryQuestions')
+            ->where('categories_id',1)
             ->get();
-
+            
         return view('client.test', compact('categories'));
     }
 
     public function store(StoreTestRequest $request)
     {
+       
         $options = Option::find(array_values($request->input('questions')));
-
+        
         $result = auth()->user()->userResults()->create([
             'total_points' => $options->sum('points')
         ]);

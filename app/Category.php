@@ -9,7 +9,7 @@ class Category extends Model
 {
     use SoftDeletes;
 
-    public $table = 'categories';
+    public $table = 'sub-categories';
 
     protected $dates = [
         'created_at',
@@ -26,6 +26,7 @@ class Category extends Model
 
     public function categoryQuestions()
     {
-        return $this->hasMany(Question::class, 'category_id', 'id');
+        return $this->hasMany(Question::class, 'sub_category_id', 'id');
     }
+
 }
