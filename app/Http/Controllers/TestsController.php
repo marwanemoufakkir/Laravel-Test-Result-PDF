@@ -10,7 +10,7 @@ class TestsController extends Controller
 {
     public function index()
     {
-        $categories = Category::with(['categoryQuestions' => function ($query) {
+        $categories1 = Category::with(['categoryQuestions' => function ($query) {
                 $query->inRandomOrder()
                     ->with(['questionOptions' => function ($query) {
                         $query->inRandomOrder();
@@ -19,13 +19,75 @@ class TestsController extends Controller
             ->whereHas('categoryQuestions')
             ->where('categories_id',1)
             ->get();
-            
-        return view('client.test', compact('categories'));
+        $categories2 = Category::with(['categoryQuestions' => function ($query) {
+            $query->inRandomOrder()
+                ->with(['questionOptions' => function ($query) {
+                    $query->inRandomOrder();
+                    }]);
+            }])
+            ->whereHas('categoryQuestions')
+            ->where('categories_id',2)
+            ->get();
+            $categories3 = Category::with(['categoryQuestions' => function ($query) {
+                $query->inRandomOrder()
+                    ->with(['questionOptions' => function ($query) {
+                        $query->inRandomOrder();
+                        }]);
+                }])
+                ->whereHas('categoryQuestions')
+                ->where('categories_id',3)
+                ->get();
+                $categories4 = Category::with(['categoryQuestions' => function ($query) {
+                    $query->inRandomOrder()
+                        ->with(['questionOptions' => function ($query) {
+                            $query->inRandomOrder();
+                            }]);
+                    }])
+                    ->whereHas('categoryQuestions')
+                    ->where('categories_id',4)
+                    ->get();
+                    $categories5 = Category::with(['categoryQuestions' => function ($query) {
+                        $query->inRandomOrder()
+                            ->with(['questionOptions' => function ($query) {
+                                $query->inRandomOrder();
+                                }]);
+                        }])
+                        ->whereHas('categoryQuestions')
+                        ->where('categories_id',5)
+                        ->get();
+                        $categories6 = Category::with(['categoryQuestions' => function ($query) {
+                            $query->inRandomOrder()
+                                ->with(['questionOptions' => function ($query) {
+                                    $query->inRandomOrder();
+                                    }]);
+                            }])
+                            ->whereHas('categoryQuestions')
+                            ->where('categories_id',6)
+                            ->get();
+                            $categories7 = Category::with(['categoryQuestions' => function ($query) {
+                                $query->inRandomOrder()
+                                    ->with(['questionOptions' => function ($query) {
+                                        $query->inRandomOrder();
+                                        }]);
+                                }])
+                                ->whereHas('categoryQuestions')
+                                ->where('categories_id',7)
+                                ->get();
+                                $categories8 = Category::with(['categoryQuestions' => function ($query) {
+                                    $query->inRandomOrder()
+                                        ->with(['questionOptions' => function ($query) {
+                                            $query->inRandomOrder();
+                                            }]);
+                                    }])
+                                    ->whereHas('categoryQuestions')
+                                    ->where('categories_id',8)
+                                    ->get();
+        return view('client.test', compact('categories1','categories2','categories3','categories4','categories5','categories6','categories7','categories8'));
     }
 
     public function store(StoreTestRequest $request)
     {
-       
+       dd($request->input('questions'));
         $options = Option::find(array_values($request->input('questions')));
         
         $result = auth()->user()->userResults()->create([

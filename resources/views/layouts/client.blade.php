@@ -279,7 +279,7 @@ label span:before {
   box-shadow: inset 0 0 0 0.125em #00005c;
 }
 
-.container {
+/* .container {
   position: absolute;
   top: 0;
   left: 0;
@@ -290,7 +290,7 @@ label span:before {
   justify-content: center;
   align-items: center;
   padding: 20px;
-}
+} */
     </style>
     
 </head>
